@@ -22,7 +22,8 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|min:3|max:100',
+            'slug' => 'required|string|min:3|max:50',
         ];
     }
 }

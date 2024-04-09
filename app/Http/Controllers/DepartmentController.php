@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\AddDepartmentAction;
 use App\Models\Department;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
@@ -19,9 +20,9 @@ class DepartmentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(AddDepartmentAction $action, StoreDepartmentRequest $request )
     {
-        //
+        return $action->handle($request);
     }
 
     /**

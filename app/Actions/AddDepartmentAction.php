@@ -3,8 +3,6 @@ namespace App\Actions;
 
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Models\Department;
-use F9Web\ApiResponseHelpers;
-use Illuminate\Support\Facades\Hash;
 
 class AddDepartmentAction
 {
@@ -14,8 +12,13 @@ class AddDepartmentAction
     {
         $request->validated($request->all());
 
-        $department = Department::created([
+        $department = Department::create([
+            'name' => $request->name,
+            'slug' => $request->slug,
+        ]);
 
-        ])
+        return $this->respondWithSuccess([
+            'department' => $department,
+        ]);
     }
 }
