@@ -10,4 +10,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('addDepartment', [DepartmentController::class, 'create']);
+Route::get('/departments', [DepartmentController::class, 'index']);
+Route::post('/add', [DepartmentController::class, 'store']);
+Route::patch('/departments/{department}', [DepartmentController::class, 'update']);
+Route::delete('/departments/{department}', [DepartmentController::class, 'destroy']);
