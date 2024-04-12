@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use app\Actions\AddRoleAction;
 use App\Models\Role;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
@@ -13,7 +14,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            "status" => true,
+            "data" => Role::all()
+        ]);
     }
 
     /**
@@ -27,9 +31,9 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRoleRequest $request)
+    public function store(StoreRoleRequest $request, AddRoleAction $action)
     {
-        //
+        return $action->handle($request);
     }
 
     /**
@@ -61,6 +65,10 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return response()->json([
+            "status" => true,
+        ]);
     }
 }
