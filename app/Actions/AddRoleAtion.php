@@ -4,12 +4,13 @@ namespace app\Actions;
 use App\Http\Requests\StoreRoleRequest;
 use App\Models\Role;
 use F9Web\ApiResponseHelpers;
+use Illuminate\Http\JsonResponse;
 
 class AddRoleAction
 {
     use ApiResponseHelpers;
 
-    public function handle(StoreRoleRequest $request)
+    public function handle(StoreRoleRequest $request): JsonResponse
     {
         $request->validated($request->all());
 

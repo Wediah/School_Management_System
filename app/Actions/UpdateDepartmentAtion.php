@@ -6,12 +6,13 @@ use App\Http\Requests\UpdateDepartmentRequest;
 use App\Models\Department;
 use F9Web\ApiResponseHelpers;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\JsonResponse;
 
-class UpdateDepartmentAtion
+class UpdateDepartmentAction
 {
     use ApiResponseHelpers;
 
-    public function handle(Department $department)
+    public function handle(Department $department): JsonResponse
     {
         $attributes = $this->validateDepartment($department);
 

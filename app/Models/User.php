@@ -54,4 +54,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function statuses()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function programs()
+    {
+        return $this->belongsTo(Program::class);
+    }
 }

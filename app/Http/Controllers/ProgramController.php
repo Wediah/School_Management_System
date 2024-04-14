@@ -13,7 +13,10 @@ class ProgramController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'status' => true,
+            'data' => Program::all()
+        ]);
     }
 
     /**

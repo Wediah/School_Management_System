@@ -1,26 +1,25 @@
 <?php
-namespace App\Actions;
+namespace app\actions;
 
-use App\Http\Requests\StoreDepartmentRequest;
-use App\Models\Department;
+use App\Models\Status;
+use App\Http\Requests\StoreStatusRequest;
 use F9Web\ApiResponseHelpers;
 use Illuminate\Http\JsonResponse;
 
-class AddDepartmentAction
+class AddStatusAction
 {
     use ApiResponseHelpers;
-
-    public function handle(StoreDepartmentRequest $request): JsonResponse
+    public function handle(StoreStatusRequest $request): JsonResponse
     {
         $request->validated($request->all());
 
-        $department = Department::create([
+        $status = Status::create([
             'name' => $request->name,
             'slug' => $request->slug,
         ]);
 
         return $this->respondWithSuccess([
-            'department' => $department,
+            'status' => $status,
         ]);
     }
 }

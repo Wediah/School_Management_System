@@ -22,7 +22,8 @@ class StoreStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:100|unique:statuses,name',
+            'slug' => 'required|string|max:50|unique:statuses,slug',
         ];
     }
 }

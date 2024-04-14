@@ -1,26 +1,25 @@
 <?php
-namespace App\Actions;
+namespace app\actions;
 
-use App\Http\Requests\StoreDepartmentRequest;
-use App\Models\Department;
+use App\Models\Program;
+use App\Http\Requests\StoreProgramRequest;
 use F9Web\ApiResponseHelpers;
 use Illuminate\Http\JsonResponse;
 
-class AddDepartmentAction
+class AddProgramAction
 {
     use ApiResponseHelpers;
-
-    public function handle(StoreDepartmentRequest $request): JsonResponse
+    public function handle(StoreProgramRequest $request): JsonResponse
     {
         $request->validated($request->all());
 
-        $department = Department::create([
+        $program = Program::create([
             'name' => $request->name,
             'slug' => $request->slug,
         ]);
 
         return $this->respondWithSuccess([
-            'department' => $department,
+            'program' => $program
         ]);
     }
 }
