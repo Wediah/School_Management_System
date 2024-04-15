@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\AddProgramAction;
 use App\Models\Program;
 use App\Http\Requests\StoreProgramRequest;
 use App\Http\Requests\UpdateProgramRequest;
@@ -30,9 +31,9 @@ class ProgramController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProgramRequest $request)
+    public function store(StoreProgramRequest $request, AddProgramAction $action)
     {
-        //
+        return $action->handle($request);
     }
 
     /**
@@ -64,6 +65,10 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program)
     {
-        //
+        $program->delete();
+
+        return response()->json([
+            'status' => true,
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\AddStatusAction;
 use App\Models\Status;
 use App\Http\Requests\StoreStatusRequest;
 use App\Http\Requests\UpdateStatusRequest;
@@ -30,9 +31,9 @@ class StatusController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStatusRequest $request)
+    public function store(StoreStatusRequest $request, AddStatusAction $action)
     {
-        //
+        return $action->handle($request);
     }
 
     /**
@@ -64,6 +65,10 @@ class StatusController extends Controller
      */
     public function destroy(Status $status)
     {
-        //
+        $status->delete();
+
+        return response()->json([
+            'status' => true,
+        ]);
     }
 }

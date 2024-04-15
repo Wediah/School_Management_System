@@ -11,7 +11,7 @@ class StoreProgramRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,8 @@ class StoreProgramRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:100|unique:programs,name',
-            'slug' => 'required|string|max:50|unique:programs,slug',
+            'name' => 'required|string|max:100',
+            'slug' => 'required|string|max:50',
         ];
     }
 }
