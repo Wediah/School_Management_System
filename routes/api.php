@@ -20,6 +20,10 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::patch('/users/{user}', [RegisterController::class, 'update']);
 Route::delete('/users/{user}', [RegisterController::class, 'destroy']);
 
+//sessions
+Route::post('login', [RegisterController::class, 'store']);
+Route::post('logout', [RegisterController::class, 'destroy']);
+
 //department
 Route::get('/departments', [DepartmentController::class, 'index']);
 Route::post('/add', [DepartmentController::class, 'store']);

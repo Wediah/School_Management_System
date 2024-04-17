@@ -5,6 +5,7 @@ use F9Web\ApiResponseHelpers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 
 class AddUserAction
 {
@@ -17,7 +18,7 @@ class AddUserAction
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' =>Hash::make($request->password),
             'department_id' => $request->department_id,
             'program_id' => $request->program_id,
             'role_id' => $request->role_id,
