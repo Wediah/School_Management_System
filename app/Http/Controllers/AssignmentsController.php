@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\AddAssignmentsAction;
 use App\Models\Assignments;
 use App\Http\Requests\StoreAssignmentsRequest;
 use App\Http\Requests\UpdateAssignmentsRequest;
@@ -13,7 +14,10 @@ class AssignmentsController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            "status" => true,
+            "data" => Assignments::all()
+        ]);
     }
 
     /**
@@ -27,9 +31,9 @@ class AssignmentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAssignmentsRequest $request)
+    public function store(StoreAssignmentsRequest $request, AddAssignmentsAction $action)
     {
-        //
+        return $action->handle($request);
     }
 
     /**
@@ -61,6 +65,10 @@ class AssignmentsController extends Controller
      */
     public function destroy(Assignments $assignments)
     {
-        //
+        $assignments->delete();
+
+        return response()->json([
+            "status" => true,
+        ]);
     }
 }

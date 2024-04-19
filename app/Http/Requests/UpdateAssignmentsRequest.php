@@ -11,7 +11,7 @@ class UpdateAssignmentsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateAssignmentsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "user_id" => "required|exists:users,id",
+            "program_id" => "required|exists:programs,id",
+            "body" => "required|string",
         ];
     }
 }
