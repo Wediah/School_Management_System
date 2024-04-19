@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssignmentsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RegisterController;
@@ -45,3 +46,6 @@ Route::delete('/status/{status}', [StatusController::class, 'destroy']);
 Route::get('/programs', [ProgramController::class, 'index']);
 Route::post('/addprogram', [ProgramController::class, 'store']);
 Route::delete('/programs/{program}', [ProgramController::class, 'destroy']);
+
+//assignments
+Route::get('/assignments', [AssignmentsController::class, 'index']);

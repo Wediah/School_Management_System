@@ -6,6 +6,7 @@ use App\Actions\AddAssignmentsAction;
 use App\Models\Assignments;
 use App\Http\Requests\StoreAssignmentsRequest;
 use App\Http\Requests\UpdateAssignmentsRequest;
+use Illuminate\Http\JsonResponse;
 
 class AssignmentsController extends Controller
 {
@@ -63,7 +64,7 @@ class AssignmentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Assignments $assignments)
+    public function destroy(Assignments $assignments): JsonResponse
     {
         $assignments->delete();
 
