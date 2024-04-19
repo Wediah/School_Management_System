@@ -26,7 +26,8 @@ class AddUserAction
         ]);
 
         return  $this->respondWithSuccess([
-            'user' => $user
+            'user' => $user,
+            'token' => $user->createToken('api-token of' . $user->name)->plainTextToken
         ]);
     }
 }

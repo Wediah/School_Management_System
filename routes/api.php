@@ -4,6 +4,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,13 +17,13 @@ Route::get('/user', function (Request $request) {
 
 //user
 Route::get('/users', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store']);
-Route::patch('/users/{user}', [RegisterController::class, 'update']);
-Route::delete('/users/{user}', [RegisterController::class, 'destroy']);
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+Route::patch('/users/{user}', [RegisterController::class, 'update'])->middleware('auth:sanctum');
+Route::delete('/users/{user}', [RegisterController::class, 'destroy'])->middleware('auth:sanctum');
 
 //sessions
-Route::post('login', [RegisterController::class, 'store']);
-Route::post('logout', [RegisterController::class, 'destroy']);
+Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
+Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth:sanctum');
 
 //department
 Route::get('/departments', [DepartmentController::class, 'index']);
