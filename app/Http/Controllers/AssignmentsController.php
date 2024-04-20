@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\AddAssignmentsAction;
+use App\Actions\UpdateAssignmnetAction;
 use App\Models\Assignments;
 use App\Http\Requests\StoreAssignmentsRequest;
 use App\Http\Requests\UpdateAssignmentsRequest;
@@ -13,7 +14,7 @@ class AssignmentsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json([
             "status" => true,
@@ -56,9 +57,9 @@ class AssignmentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAssignmentsRequest $request, Assignments $assignments)
+    public function update(UpdateAssignmentsRequest $request, UpdateAssignmnetAction $action): JsonResponse
     {
-        //
+        return $action->handle($request);
     }
 
     /**

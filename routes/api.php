@@ -49,3 +49,6 @@ Route::delete('/programs/{program}', [ProgramController::class, 'destroy']);
 
 //assignments
 Route::get('/assignments', [AssignmentsController::class, 'index']);
+Route::post('/addassignment', [AssignmentsController::class, 'store']);
+Route::patch('/assignments/{assignment}', [AssignmentsController::class, 'update']);
+Route::delete('/assignments/{assignment}', [AssignmentsController::class, 'destroy']);
