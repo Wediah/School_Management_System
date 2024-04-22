@@ -14,7 +14,7 @@ class AddAssignmentsAction
         $request->validated($request->all());
 
         $assignment = Assignments::create([
-            'user_id' => $request->user()->id,
+            'user_id' => $request->user_id,
             'program_id' => $request->program_id,
             'body' => $request->body,
         ]);

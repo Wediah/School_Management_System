@@ -11,7 +11,7 @@ class StoreAnswerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreAnswerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "user_id" => "required",
+            "assignment_id" => "required",
+            "answer" => "required | string | max:1000",
         ];
     }
 }

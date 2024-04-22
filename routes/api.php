@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AssignmentsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProgramController;
@@ -52,3 +53,11 @@ Route::get('/assignments', [AssignmentsController::class, 'index']);
 Route::post('/addassignment', [AssignmentsController::class, 'store']);
 Route::patch('/assignments/{assignment}', [AssignmentsController::class, 'update']);
 Route::delete('/assignments/{assignment}', [AssignmentsController::class, 'destroy']);
+
+//answers
+
+Route::get('/answers', [AnswerController::class, 'index']);
+Route::post('/addanswer', [AnswerController::class, 'store']);
+Route::get('/answers/{answer}', [AnswerController::class, 'show']);
+Route::patch('/answers/{answer}', [AnswerController::class, 'update']);
+Route::delete('/answers/{answer}', [AnswerController::class, 'destroy']);

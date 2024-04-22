@@ -12,6 +12,8 @@ class Assignments extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function users(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -22,13 +24,13 @@ class Assignments extends Model
         return $this->belongsTo(Program::class);
     }
 
-    public function grades(): HasOne
-    {
-        return $this->hasOne(Grade::class);
-    }
-
-    public function answers(): HasMany
+    public function answer(): HasMany
     {
         return $this->hasMany(Answer::class)->orderBy('created_at', 'desc');
+    }
+
+    public function grade(): BelongsTo
+    {
+        return $this->belongsTo(Grade::class);
     }
 }
