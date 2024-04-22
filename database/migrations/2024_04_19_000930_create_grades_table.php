@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assignment_id')->references('id')->on('assignments');
-            $table->string('');
+            $table->foreignId('assignment_id')->references('id')->on('assignments')->deferrable();
+            $table->string('grade');
             $table->timestamps();
         });
     }

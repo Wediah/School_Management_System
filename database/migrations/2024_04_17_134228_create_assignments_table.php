@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('program_id')->references('id')->on('programs');
+            $table->foreignId('user_id')->references('id')->on('users')->deferrable();
+            $table->foreignId('program_id')->references('id')->on('programs')->deferrable();
             $table->string('body');
             $table->timestamps();
         });

@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId('department_id')->references('id')->on('departments');
-            $table->foreignId('program_id')->references('id')->on('programs');
-            $table->foreignId('role_id')->references('id')->on('roles');
-            $table->foreignId('status_id')->references('id')->on('statuses');
+            $table->foreignId('department_id')->references('id')->on('departments')->deferrable();
+            $table->foreignId('program_id')->references('id')->on('programs')->deferrable();
+            $table->foreignId('role_id')->references('id')->on('roles')->deferrable();
+            $table->foreignId('status_id')->references('id')->on('statuses')->deferrable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
