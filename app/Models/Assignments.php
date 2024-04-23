@@ -29,8 +29,8 @@ class Assignments extends Model
         return $this->hasMany(Answer::class)->orderBy('created_at', 'desc');
     }
 
-    public function grade(): BelongsTo
+    public function grade(): HasOne
     {
-        return $this->belongsTo(Grade::class);
+        return $this->hasOne(Grade::class);
     }
 }

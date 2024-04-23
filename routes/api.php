@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AssignmentsController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
@@ -24,8 +25,8 @@ Route::patch('/users/{user}', [RegisterController::class, 'update'])->middleware
 Route::delete('/users/{user}', [RegisterController::class, 'destroy'])->middleware('auth:sanctum');
 
 //sessions
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth:sanctum');
+Route::post('/login', [SessionsController::class, 'store'])->middleware('guest');
+Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth:sanctum');
 
 //department
 Route::get('/departments', [DepartmentController::class, 'index']);
@@ -48,16 +49,24 @@ Route::get('/programs', [ProgramController::class, 'index']);
 Route::post('/addprogram', [ProgramController::class, 'store']);
 Route::delete('/programs/{program}', [ProgramController::class, 'destroy']);
 
-//assignments
-Route::get('/assignments', [AssignmentsController::class, 'index']);
-Route::post('/addassignment', [AssignmentsController::class, 'store']);
-Route::patch('/assignments/{assignment}', [AssignmentsController::class, 'update']);
-Route::delete('/assignments/{assignment}', [AssignmentsController::class, 'destroy']);
+Route::middleware('auth:sanctum')->group(function () {
+    //assignments
+    Route::get('/assignments', [AssignmentsController::class, 'index']);
+    Route::post('/addassignment', [AssignmentsController::class, 'store']);
+    Route::patch('/assignments/{assignment}', [AssignmentsController::class, 'update']);
+    Route::delete('/assignments/{assignment}', [AssignmentsController::class, 'destroy']);
 
-//answers
+    //answers
+    Route::get('/answers', [AnswerController::class, 'index']);
+    Route::post('/addanswer', [AnswerController::class, 'store']);
+    Route::get('/answers/{answer}', [AnswerController::class, 'show']);
+    Route::patch('/answers/{answer}', [AnswerController::class, 'update']);
+    Route::delete('/answers/{answer}', [AnswerController::class, 'destroy']);
 
-Route::get('/answers', [AnswerController::class, 'index']);
-Route::post('/addanswer', [AnswerController::class, 'store']);
-Route::get('/answers/{answer}', [AnswerController::class, 'show']);
-Route::patch('/answers/{answer}', [AnswerController::class, 'update']);
-Route::delete('/answers/{answer}', [AnswerController::class, 'destroy']);
+    //grade
+    Route::post('addgrade', [GradeController::class, 'store']);
+    Route::patch('/grades/{grade}', [GradeController::class, 'update']);
+    Route::delete('/grades/{grade}', [GradeController::class, 'destroy']);
+});
+
+
