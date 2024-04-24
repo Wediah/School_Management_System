@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
@@ -26,15 +27,21 @@ class AppServiceProvider extends ServiceProvider
         Model::unguard();
 
         Gate::define('student', function (User $user) {
-            return $user->role === 'student';
+            return $user->role->name === 'student'
+                ? Response::allow()
+                : Response::deny('You must be a student');
         });
 
         Gate::define('lecturer', function (User $user) {
-            return $user->role === 'lecturer';
+            return $user->role->name === 'lecturer'
+                ? Response::allow()
+                : Response::deny('You must be an lecturer');
         });
 
         Gate::define('admin', function (User $user) {
-            return $user->role === 'admin';
+            return $user->role->name === 'admin'
+                ? Response::allow()
+                : Response::deny('You must be an administrator');
         });
 
         Blade::if('admin', function () {
