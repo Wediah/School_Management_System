@@ -31,4 +31,8 @@ return [
         ],
     ],
 
+    'vonage' => [
+        'sms_from' => '13555'
+    ]
+
 ];

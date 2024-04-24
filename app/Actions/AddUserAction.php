@@ -18,6 +18,7 @@ class AddUserAction
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' =>Hash::make($request->password),
             'department_id' => $request->department_id,
             'program_id' => $request->program_id,

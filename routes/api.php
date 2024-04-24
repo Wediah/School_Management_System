@@ -19,7 +19,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 //user
-Route::get('/users', [RegisterController::class, 'index']);
+Route::get('/users', [RegisterController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 Route::patch('/users/{user}', [RegisterController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/users/{user}', [RegisterController::class, 'destroy'])->middleware('auth:sanctum');

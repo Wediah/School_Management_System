@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notification;
 
 class User extends Authenticatable
 {
@@ -74,8 +75,13 @@ class User extends Authenticatable
         return $this->hasOne(Answer::class);
     }
 
-    public function grade()
+    public function grade(): HasOne
     {
+        return $this->hasOne(Grade::class);
+    }
 
+    public function routeNotificationForVonage(Notification $notification): string
+    {
+        return $this->phone;
     }
 }
