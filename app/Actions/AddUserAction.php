@@ -1,6 +1,7 @@
 <?php
 namespace App\Actions;
 
+use App\Events\UserRegistered;
 use F9Web\ApiResponseHelpers;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
@@ -26,7 +27,7 @@ class AddUserAction
             'status_id' => $request->status_id,
         ]);
 
-
+        event(new UserRegistered($user));
 
         return  $this->respondWithSuccess([
             'user' => $user,

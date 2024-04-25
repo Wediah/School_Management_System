@@ -84,4 +84,9 @@ class User extends Authenticatable
     {
         return $this->phone;
     }
+
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
 }
