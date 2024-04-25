@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-class AssignProfiletoUser implements ShouldQueue
+class AssignProfiletoUser
 {
     /**
      * Create the event listener.
@@ -31,6 +31,7 @@ class AssignProfiletoUser implements ShouldQueue
 
 //      $profile = new Profile([
         $profile = Profile::create([
+            "user_id" => $user->id,
             'name' => $user->name,
             'email' => $user->email,
             'phone' => $user->phone,
