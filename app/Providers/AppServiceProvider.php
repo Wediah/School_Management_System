@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Events\UserRegistered;
 use App\Listeners\AssignProfiletoUser;
-use App\Listeners\SendAssignmentNotification;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Model;

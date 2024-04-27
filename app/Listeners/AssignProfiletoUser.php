@@ -27,7 +27,6 @@ class AssignProfiletoUser
     {
         $user = $event->user;
 
-//        Log::info('User registered event triggered. User ID: ' . $user->id);
 
 //      $profile = new Profile([
         $profile = Profile::create([

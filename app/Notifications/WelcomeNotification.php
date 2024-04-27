@@ -8,7 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\VonageMessage;
 
-class NewAssignment extends Notification implements ShouldQueue
+class WelcomeNotification extends Notification  implements ShouldQueue
 {
     use Queueable;
 
@@ -28,6 +28,7 @@ class NewAssignment extends Notification implements ShouldQueue
     public function via(object $notifiable): array
     {
         return ['mail', 'vonage'];
+
     }
 
     /**
@@ -44,7 +45,7 @@ class NewAssignment extends Notification implements ShouldQueue
     public function toVonage(object $notifiable): VonageMessage
     {
         return (new VonageMessage())
-            ->content('you have a new assignment');
+            ->content("You are welcome to ATU, don't share credentials with anyone");
     }
 
     /**
