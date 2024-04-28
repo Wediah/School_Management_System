@@ -11,13 +11,14 @@ use Illuminate\Notifications\Messages\VonageMessage;
 class WelcomeNotification extends Notification  implements ShouldQueue
 {
     use Queueable;
+    private $welcomeData;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($welcomeData)
     {
-        //
+        $this->welcomeData = $welcomeData;
     }
 
     /**
@@ -37,16 +38,16 @@ class WelcomeNotification extends Notification  implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line($this->welcomeData['body'])
+                    ->action($this->welcomeData['welcomeText'], $this->welcomeData['Url'])
+                    ->line($this->welcomeData['thankyou']);
     }
 
-    public function toVonage(object $notifiable): VonageMessage
-    {
-        return (new VonageMessage())
-            ->content("You are welcome to ATU, don't share credentials with anyone");
-    }
+//    public function toVonage(object $notifiable): VonageMessage
+//    {
+//        return (new VonageMessage())
+//            ->content("You are welcome to ATU, don't share credentials with anyone");
+//    }
 
     /**
      * Get the array representation of the notification.
