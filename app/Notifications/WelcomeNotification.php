@@ -28,7 +28,7 @@ class WelcomeNotification extends Notification  implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['mail', 'vonage'];
+        return ['mail'];
 
     }
 
@@ -38,9 +38,11 @@ class WelcomeNotification extends Notification  implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line($this->welcomeData['body'])
-                    ->action($this->welcomeData['welcomeText'], $this->welcomeData['Url'])
-                    ->line($this->welcomeData['thankyou']);
+                    ->greeting('Welcome!')
+                    ->line('You have successfully registered to join ATU')
+                    ->action('check it out', url('/'))
+                    ->line('Best regards!')
+                    ->from('atu@gmail.com', 'ATU');
     }
 
 //    public function toVonage(object $notifiable): VonageMessage

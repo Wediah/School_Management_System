@@ -13,14 +13,7 @@ class UserObserver
      */
     public function created(User $user): void
     {
-        $welcomeData = [
-            'body' => 'You are welcome, it is a test',
-            'welcomeText' => 'You have been successfully Registered, you are welcome to Atu',
-            'url' => url('/'),
-            'thankyou' => 'Thank you for signing up'
-        ];
-
-        $user->notify(new WelcomeNotification($welcomeData));
+        $user->notify(new WelcomeNotification($user));
     }
 
     /**
