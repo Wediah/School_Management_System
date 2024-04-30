@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,14 +12,14 @@ use Illuminate\Notifications\Messages\VonageMessage;
 class WelcomeNotification extends Notification  implements ShouldQueue
 {
     use Queueable;
-    private $welcomeData;
+    protected $user;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($welcomeData)
+    public function __construct(User $user)
     {
-        $this->welcomeData = $welcomeData;
+        $this->user = $user;
     }
 
     /**
@@ -38,7 +39,7 @@ class WelcomeNotification extends Notification  implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->greeting('Welcome!')
+                    ->greeting('Welcome!' . $this->user->name . ',')
                     ->line('You have successfully registered to join ATU')
                     ->action('check it out', url('/'))
                     ->line('Best regards!')

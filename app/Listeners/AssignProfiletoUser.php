@@ -29,7 +29,7 @@ class AssignProfiletoUser
 
 
 //      $profile = new Profile([
-        $profile = Profile::create([
+        Profile::firstOrCreate([
             "user_id" => $user->id,
             'name' => $user->name,
             'email' => $user->email,

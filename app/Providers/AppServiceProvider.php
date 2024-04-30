@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\UserRegistered;
 use App\Listeners\AssignProfiletoUser;
 use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Blade;
@@ -33,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
             UserRegistered::class,
             AssignProfiletoUser::class
         );
+
+        User::observe(UserObserver::class);
 
         Gate::define('student', function (User $user) {
             return $user->role->name === 'Student'
