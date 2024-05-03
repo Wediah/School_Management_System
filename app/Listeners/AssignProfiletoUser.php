@@ -41,6 +41,7 @@ class AssignProfiletoUser
             'status_id' => $user->status_id,
         ]);
 
+        //this is an alternative to persisting the dta from the form into the db
 //        $user->profile()->save($profile);
 
 //        try {
