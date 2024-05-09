@@ -79,6 +79,10 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+
+//TODO
+//work on the notifications again
+
 //Route::get('/mail', function () {
 //    $user =  App\Models\User::find(18);
 //    return (new App\Notifications\WelcomeNotification($user))
